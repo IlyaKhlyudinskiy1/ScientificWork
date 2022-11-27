@@ -1,0 +1,7 @@
+FileLibrary/bin
+FileLibrary/obj
+FileLibrary/.vs
+RegularLibrary/bin
+RegularLibrary/obj
+RegularLibrary/.vs
+*.sln
