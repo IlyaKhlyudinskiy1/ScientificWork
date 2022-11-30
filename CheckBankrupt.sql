@@ -1,4 +1,4 @@
--- Включаем CLR
+-- Г‚ГЄГ«ГѕГ·Г ГҐГ¬ CLR
 
 exec sp_configure 'show advanced options', 1;
 reconfigure;
@@ -6,25 +6,24 @@ exec sp_configure 'clr enabled', 1;
 exec sp_configure 'clr strict security', 0;
 reconfigure;
 
--- Проверка всех сборок
+-- ГЏГ°Г®ГўГҐГ°ГЄГ  ГўГ±ГҐГµ Г±ГЎГ®Г°Г®ГЄ
 
 select * from sys.assemblies
 
--- Создание сборки CheckBankruptLibrary
+-- Г‘Г®Г§Г¤Г Г­ГЁГҐ Г±ГЎГ®Г°ГЄГЁ CheckBankruptLibrary
 
 create assembly CheckBankruptLibrary
-from 'C:\Users\Илья\Desktop\sp\CheckBankruptLibrary\bin\Debug\net472\CheckBankruptLibrary.dll'
+from 'C:\Users\Г€Г«ГјГї\Desktop\sp\CheckBankruptLibrary\bin\Debug\net472\CheckBankruptLibrary.dll'
 with permission_set = unsafe;
 
--- Обновление сборки CheckBankruptLibrary
+-- ГЋГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ Г±ГЎГ®Г°ГЄГЁ CheckBankruptLibrary
 
-alter assembly CheckBankruptLibrary from 'C:\Users\Илья\Desktop\sp\CheckBankruptLibrary\bin\Debug\net472\CheckBankruptLibrary.dll'
+alter assembly CheckBankruptLibrary from 'C:\Users\Г€Г«ГјГї\Desktop\sp\CheckBankruptLibrary\bin\Debug\net472\CheckBankruptLibrary.dll'
 
--- Функция CheckBankruptByINN (создание и проверка)
+-- Г”ГіГ­ГЄГ¶ГЁГї CheckBankruptByINN (Г±Г®Г§Г¤Г Г­ГЁГҐ ГЁ ГЇГ°Г®ГўГҐГ°ГЄГ )
 
 create function CheckBankruptByINN(@_inn nvarchar(4000))
 returns nvarchar(4000)
 as external name CheckBankruptLibrary.[CheckBankruptLibrary.CheckBankrupt_fn].CheckBankruptByINN
 
 print dbo.CheckBankruptByINN('027201944340')
-print dbo.CheckBankruptByINN('344409790623')
