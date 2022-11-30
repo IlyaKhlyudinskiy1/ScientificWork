@@ -1,7 +1,10 @@
-FileLibrary/bin
-FileLibrary/obj
-FileLibrary/.vs
-RegularLibrary/bin
-RegularLibrary/obj
-RegularLibrary/.vs
+# folders
+bin
+obj
+.vs
+
+# no .sln files
 *.sln
+
+# no desc.txt (temporarily)
+desc.txt
