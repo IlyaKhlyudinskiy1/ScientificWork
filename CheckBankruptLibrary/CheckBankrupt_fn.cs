@@ -10,7 +10,7 @@ namespace CheckBankruptLibrary
         //Функция проверяющая банкрот человек или нет по инн
         public static string CheckBankruptByINN(string _inn)
         {
-            long _innToLong;
+            ulong _innToLong;
 
             ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
             ServicePointManager.Expect100Continue = true;
@@ -19,7 +19,7 @@ namespace CheckBankruptLibrary
             {
                 try
                 {
-                    _innToLong = long.Parse(_inn);
+                    _innToLong = ulong.Parse(_inn);
                 }
                 catch(Exception)
                 {
@@ -31,8 +31,10 @@ namespace CheckBankruptLibrary
                 return "Неверно введен инн физ лица";
             }
 
-            string _testurl = @"https://services.fedresurs.ru/Bankruptcy/MessageServiceDemo/WebService.svc";
+            //Ссылка для подключения к настоящему сервису
             //string _url = @"https://services.fedresurs.ru/Bankruptcy/MessageService/WebService.svc";
+
+            string _testurl = @"https://services.fedresurs.ru/Bankruptcy/MessageServiceDemo/WebService.svc";
             string _method = @"http://tempuri.org/IMessageService/SearchDebtorByCode";
             string _soapenv = "";
 
